@@ -2,7 +2,7 @@
 
 #include <DHT.h>
 #include <LiquidCrystal_I2C.h> // Inclui a biblioteca do LCD I2C
-#include <Wire.h> // NecessÃ¡rio para comunicaÃ§Ã£o I2C
+#include <Wire.h> // Necessário para comunicação I2C
 
 // Define o pino do sensor DHT e o tipo do DHT
 #define DHTPIN 2
@@ -11,8 +11,8 @@
 // Define o pino de controle do relÃ©
 #define RELEPIN 13
 
-// Define o endereÃ§o I2C do LCD e as dimensÃµes (colunas, linhas)
-LiquidCrystal_I2C lcd(0x27, 16, 2); // *** SUBSTITUA 0x27 PELO ENDEREÃO DO SEU DISPLAY SE NECESSÃRIO ***
+// Define o endereÃ§o I2C do LCD e as dimensões (colunas, linhas)
+LiquidCrystal_I2C lcd(0x27, 16, 2); // *** SUBSTITUA 0x27 PELO ENDEREÇO DO SEU DISPLAY SE NECESSÁRIO ***
 
 // Inicializa o sensor DHT
 DHT dht(DHTPIN, DHTTYPE);
@@ -38,7 +38,7 @@ void setup() {
 
   // Define o pino do relÃ© como saÃ­da
   pinMode(RELEPIN, OUTPUT);
-  // Garante que o relÃ© comece desligado (lÃ³gica invertida)
+  // Garante que o relé comece desligado (lógica invertida)
   digitalWrite(RELEPIN, HIGH);
 
   Serial.println("Umidificador DESLIGADO");
@@ -53,7 +53,7 @@ void loop() {
 
   // Limpa a primeira linha do LCD
   lcd.setCursor(0, 0);
-  lcd.print("Temp:        Â°C"); // Preenche com espaÃ§os para limpar a linha
+  lcd.print("Temp:        Â°C"); // Preenche com espaços para limpar a linha
 
   // Verifica se a leitura falhou
   if (isnan(temp)) {
@@ -74,17 +74,17 @@ void loop() {
   // Verifica se a temperatura atingiu ou ultrapassou o limite
   lcd.setCursor(0, 1); // Move o cursor para a segunda linha
   if (temp >= temperaturaLimite) {
-    // Liga o umidificador (ativa o relÃ© - lÃ³gica invertida)
+    // Liga o umidificador (ativa o relé - lógica invertida)
     digitalWrite(RELEPIN, LOW);
     Serial.println("Temperatura atingiu " + String(temperaturaLimite) + " Â°C ou mais.");
     Serial.println("Umidificador LIGADO");
-    lcd.print("Umidificador: ON "); // Preenche com espaÃ§os para limpar a linha
+    lcd.print("Umidificador: ON "); // Preenche com espaços para limpar a linha
   } else {
-    // Desliga o umidificador (desativa o relÃ© - lÃ³gica invertida)
+    // Desliga o umidificador (desativa o relé - lógica invertida)
     digitalWrite(RELEPIN, HIGH);
     Serial.println("Temperatura abaixo de " + String(temperaturaLimite) + " Â°C.");
     Serial.println("Umidificador DESLIGADO");
-    lcd.print("Umidificador: OFF"); // Preenche com espaÃ§os para limpar a linha
+    lcd.print("Umidificador: OFF"); // Preenche com espaços para limpar a linha
   }
 
   Serial.println("---------------------------------------");

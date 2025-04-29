@@ -11,7 +11,7 @@
 // Define o pino de controle do relÃ©
 #define RELEPIN 13
 
-// Define o endereÃ§o I2C do LCD e as dimensões (colunas, linhas)
+// Define o endereço I2C do LCD e as dimensões (colunas, linhas)
 LiquidCrystal_I2C lcd(0x27, 16, 2); // *** SUBSTITUA 0x27 PELO ENDEREÇO DO SEU DISPLAY SE NECESSÁRIO ***
 
 // Inicializa o sensor DHT
